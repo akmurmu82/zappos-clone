@@ -14,7 +14,7 @@ const Navbar = () => {
       <nav className="flex items-center justify-between px-6 py-4">
         {/* Left - Logo */}
         <div className="flex items-center space-x-4">
-          <a href="#" className="flex items-center">
+          <a href="/" className="flex items-center">
             <img
               src="https://upload.wikimedia.org/wikipedia/commons/8/88/Zappos_logo.svg" // Placeholder for Zappos logo
               alt="Zappos Logo"
@@ -39,7 +39,7 @@ const Navbar = () => {
 
         {/* Right - Icons */}
         <div className="flex items-center space-x-6 font-bold text-lg">
-          <a href="#" className="text-gray-600 hover:text-black text-3xl">
+          <a href="/auth/register" className="text-gray-600 hover:text-black text-3xl">
             <PiUserCircleThin />
           </a>
           <a href="#" className="text-gray-600 hover:text-black text-3xl">
