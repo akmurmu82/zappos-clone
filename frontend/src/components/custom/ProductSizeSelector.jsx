@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const ProductSizeSelector = ({ sizes = [4, 6,5, 6, 7, 8, 9, 10] }) => {
+const ProductSizeSelector = ({ sizes = [4, 5, 6, 7, 8, 9, 10] }) => {
     const [selectedSize, setSelectedSize] = useState("");
 
     const handleSizeChange = (e) => {

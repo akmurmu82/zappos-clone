@@ -1,13 +1,20 @@
-import AddToBagButton from "@/components/ui/custom/AddToBagButton";
-import ProductSizeSelector from "@/components/ui/custom/ProductSizeSelector";
+import AddToBagButton from "@/components/custom/AddToBagButton";
+import ProductSizeSelector from "@/components/custom/ProductSizeSelector";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Navbar from '../components/ui/Navbar';
+import Navbar from '../components/custom/Navbar';
+import { useDispatch } from "react-redux";
+import { addToCart } from "@/redux/features/cartSlice";
+import Footer from "@/components/custom/Footer";
 
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 const ProductDetails = () => {
+    const dispatch = useDispatch();
+    const handleAddToBag = (product) => {
+        dispatch(addToCart(product))
+    }
     const { productId } = useParams();
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -72,7 +79,7 @@ const ProductDetails = () => {
                         <ProductSizeSelector />
 
                         {/* Add to Bag Button */}
-                        <AddToBagButton />
+                        <AddToBagButton onAddToBag={() => handleAddToBag(product)} />
 
                         {/* Product Information */}
                         <div className="mt-4">
@@ -85,6 +92,7 @@ const ProductDetails = () => {
                     </div>
                 </div>
             </div>
+            <Footer />
         </>
     );
 };

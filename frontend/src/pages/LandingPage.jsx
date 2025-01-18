@@ -1,11 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import PropTypes from 'prop-types';
-import TrendingNow from '../components/ui/Trending';
-import Navbar from '../components/ui/Navbar';
-import { CarouselSize } from '../components/ui/ProdCarousel';
-import StaticCard from '@/components/ui/custom/StaticCards';
-import Footer from '@/components/ui/custom/Footer';
+import TrendingNow from '../components/custom/Trending';
+import Navbar from '../components/custom/Navbar';
+import { CarouselSize } from '../components/custom/ProdCarousel';
+import StaticCard from '@/components/custom/StaticCards';
+import Footer from '@/components/custom/Footer';
 import { useParams } from "react-router-dom";
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
 

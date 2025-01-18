@@ -53,11 +53,13 @@ const CreateAccount = () => {
 
       if (response.status === 201) { // Status code for successful creation
         setSuccess("Account created successfully!");
+        console.log(response)
+        console.log(response.data.user.name)
 
         // Dispatching the setUser action to update Redux state
         dispatch(setUser({
-          name: response.data.name,
-          email: response.data.email,
+          name: response.data.user.name,
+          email: response.data.user.email,
           // You can add other data fields as necessary
         }));
 
@@ -67,7 +69,7 @@ const CreateAccount = () => {
         setError(response.data.message || "Something went wrong. Please try again.");
       }
     } catch (err) {
-      setError("Server error. Please try again later.");
+      setError(err.response.data.message || "Server error. Please try again later.");
     } finally {
       setLoading(false);
     }

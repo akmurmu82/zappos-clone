@@ -4,7 +4,7 @@ import {
     CarouselItem,
     CarouselNext,
     CarouselPrevious,
-} from "./carousel";
+} from "../ui/carousel";
 import ProductCard from "./ProductCard";
 
 export function CarouselSize({ header, products }) {

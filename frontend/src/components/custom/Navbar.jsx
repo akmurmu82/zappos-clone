@@ -1,6 +1,13 @@
 import { PiBagThin, PiUserCircleThin } from "react-icons/pi";
+import { useSelector } from "react-redux";
+
 
 const Navbar = () => {
+  const userInfo = useSelector((state) => state.user.userInfo);
+  const items = useSelector((state) => state.cart.items);
+  console.log(items)
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+
   return (
     <header className="bg-white border-b">
       {/* Top announcement */}
@@ -38,14 +45,26 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Right - Icons */}
         <div className="flex items-center space-x-4 sm:space-x-6 font-bold text-lg">
-          <a href="/auth/register" className="text-gray-600 hover:text-black text-3xl">
-            <PiUserCircleThin />
-          </a>
-          <a href="#" className="text-gray-600 hover:text-black text-3xl">
-            <PiBagThin />
-          </a>
+          {/* User Icon */}
+          <div className="flex items-center">
+            <a href="/auth/register" className="text-gray-600 hover:text-black text-3xl">
+              <PiUserCircleThin />
+            </a>
+            <span className="text-sm">{isAuthenticated ? userInfo.name.split(" ")[0] : "Sign in!"}</span>
+          </div>
+
+          {/* Cart Icon with Badge */}
+          <div className="relative">
+            <a href="#" className="text-gray-600 hover:text-black text-3xl">
+              <PiBagThin />
+            </a>
+            {items.length > 0 && (
+              <span className="absolute -top-2 -right-2 bg-blue-600 text-white rounded-full text-xs font-bold w-5 h-5 flex items-center justify-center">
+                {items.length}
+              </span>
+            )}
+          </div>
         </div>
       </nav>
 

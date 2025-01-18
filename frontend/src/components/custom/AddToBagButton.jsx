@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const AddToBagButton = ({ onAddToBag }) => {
     const [isAdded, setIsAdded] = useState(false);
