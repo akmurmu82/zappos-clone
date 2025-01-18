@@ -12,9 +12,11 @@ const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 const ProductDetails = () => {
     const dispatch = useDispatch();
+
     const handleAddToBag = (product) => {
         dispatch(addToCart(product))
     }
+    
     const { productId } = useParams();
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);

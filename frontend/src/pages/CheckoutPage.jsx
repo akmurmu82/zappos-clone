@@ -44,6 +44,7 @@ const CheckoutPage = ({ cartArr }) => {
 
             {/* Main Container */}
             <main className="container mx-auto px-24 flex flex-col lg:flex-row gap-6 mt-6">
+                
                 {/* Left Section - Shipping Form */}
                 <section className="flex-1 p-6 rounded-lg">
                     <h2 className="text-2xl font-bold mb-4">Checkout</h2>

@@ -4,6 +4,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { Link } from "react-router-dom";
 import { logout } from "@/redux/features/userSlice";
 import { clearCart } from "@/redux/features/cartSlice";
+import CartIcon from "./CartIcon";
 
 
 const Navbar = () => {
@@ -63,7 +64,7 @@ const Navbar = () => {
                 <span className="text-sm ml-2">{isAuthenticated ? userInfo.name.split(" ")[0] : "Sign in!"}</span>
               </div>
             </PopoverTrigger>
-            <PopoverContent width="100px" boxShadow="lg" borderRadius="md">
+            <PopoverContent width="100px">
 
               {isAuthenticated ? (
                 <>
@@ -98,7 +99,7 @@ const Navbar = () => {
 
 
           {/* Cart Icon with Badge */}
-          <div className="relative">
+          {/* <div className="relative">
             <a href="#" className="text-gray-600 hover:text-black text-3xl">
               <PiBagThin />
             </a>
@@ -107,7 +108,8 @@ const Navbar = () => {
                 {items.length}
               </span>
             )}
-          </div>
+          </div> */}
+          <CartIcon/>
         </div>
       </nav>
 

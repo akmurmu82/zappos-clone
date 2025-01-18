@@ -34,14 +34,14 @@ function LandingPage() {
         // console.log("product:", product)
     }, [product])
 
-    const products = [
-        { id: 1, name: "The North Face Metropolis Parka", category: "Women's", price: "$300.00", imgSrc: "https://m.media-amazon.com/images/I/71Y-TwkSmuL._AC_SR920,736_.jpg" },
-        { id: 2, name: "Nike Air Max 97", category: "Men's", price: "$150.00", imgSrc: "https://m.media-amazon.com/images/I/717lS5IAi4L._AC_SR920,736_.jpg" },
-        { id: 3, name: "New Balance Classic", category: "Unisex", price: "$180.00", imgSrc: "https://m.media-amazon.com/images/I/61H1pcY1q2L._AC_SR920,736_.jpg" },
-        { id: 4, name: "Polo RalphLoaren Kids", category: "Unisex", price: "$180.00", imgSrc: "https://m.media-amazon.com/images/I/81UfIkZdpcL._AC_SR736,920_.jpg" },
-        { id: 5, name: "UGG", category: "Men's", price: "$109.95", imgSrc: "https://m.media-amazon.com/images/I/71YaRXs33jL._AC_SR920,736_.jpg" },
-        { id: 6, name: "The North Face Metropolis Parka", category: "Women's", price: "$300.00", imgSrc: "https://m.media-amazon.com/images/I/71Y-TwkSmuL._AC_SR920,736_.jpg" },
-    ];
+    // const products = [
+    //     { id: 1, name: "The North Face Metropolis Parka", category: "Women's", price: "$300.00", imgSrc: "https://m.media-amazon.com/images/I/71Y-TwkSmuL._AC_SR920,736_.jpg" },
+    //     { id: 2, name: "Nike Air Max 97", category: "Men's", price: "$150.00", imgSrc: "https://m.media-amazon.com/images/I/717lS5IAi4L._AC_SR920,736_.jpg" },
+    //     { id: 3, name: "New Balance Classic", category: "Unisex", price: "$180.00", imgSrc: "https://m.media-amazon.com/images/I/61H1pcY1q2L._AC_SR920,736_.jpg" },
+    //     { id: 4, name: "Polo RalphLoaren Kids", category: "Unisex", price: "$180.00", imgSrc: "https://m.media-amazon.com/images/I/81UfIkZdpcL._AC_SR736,920_.jpg" },
+    //     { id: 5, name: "UGG", category: "Men's", price: "$109.95", imgSrc: "https://m.media-amazon.com/images/I/71YaRXs33jL._AC_SR920,736_.jpg" },
+    //     { id: 6, name: "The North Face Metropolis Parka", category: "Women's", price: "$300.00", imgSrc: "https://m.media-amazon.com/images/I/71Y-TwkSmuL._AC_SR920,736_.jpg" },
+    // ];
 
     const kidsProducts = [
         { id: 1, name: "Shop Kid's Boot", imgSrc: "https://m.media-amazon.com/images/G/01/Zappos/2025-homepage/homepage1.6.25/KIDS-SHOP-HERO-1-BOOTS-1440x960._FMwebp_.jpg" },
@@ -80,7 +80,7 @@ function LandingPage() {
                 <TrendingNow />
                 <StaticCard products={freshPicks} title="Fresh Picks for the Year" />
                 <StaticCard products={ofTheSeason} title="Of-the-Season Brands & Styles" />
-                <CarouselSize header={'Discover Our Bestsellers'} products={products} />
+                <CarouselSize header={'Discover Our Bestsellers'} products={product} />
             </div>
             <StaticCard products={theRunningShop} title="The Running Shop" />
             <CarouselSize header={'Discover Our Bestsellers 2'} products={product} />
