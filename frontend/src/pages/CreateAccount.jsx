@@ -3,7 +3,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const CreateAccount = () => {
   const dispatch = useDispatch();
@@ -53,8 +53,6 @@ const CreateAccount = () => {
 
       if (response.status === 201) { // Status code for successful creation
         setSuccess("Account created successfully!");
-        console.log(response)
-        console.log(response.data.user.name)
 
         // Dispatching the setUser action to update Redux state
         dispatch(setUser({
@@ -175,6 +173,13 @@ const CreateAccount = () => {
 
           </div>
         </form>
+        <div className="text-sm mt-5 space-y-2">
+          <span>
+            Need additional help? Don&apos;t worry! You can reach us via phone, text, or live chat. See <Link to={"#"} className="text-blue-800" >here</Link> for contact details
+          </span>
+          <br /><br />
+          <span>Already have an account? <Link to={"/auth/login"} className="text-blue-800" >Sign in</Link></span>
+        </div>
       </div>
     </div>
   );

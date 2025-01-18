@@ -1,9 +1,12 @@
+import { setUser } from "@/redux/features/userSlice";
 import axios from "axios";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 const SignIn = () => {
+    const dispatch = useDispatch();
     const [isLoading, setLoading] = useState(false);
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
@@ -45,6 +48,7 @@ const SignIn = () => {
             setSuccess("Sign-in successful!");
             setLoading(false);
             console.log(response.data); // Log the response data
+            dispatch(setUser(response.data.user))
             navigate("/"); // Redirect to dashboard or appropriate page
         } catch (error) {
             // Handle errors
@@ -60,7 +64,17 @@ const SignIn = () => {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-100">
+        <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
+            {/* Left - Logo */}
+            <div className="flex items-center space-x-4">
+                <a href="/" className="flex items-center">
+                    <img
+                        src="https://m.media-amazon.com/images/G/01/Zappos/zapposlogo2025/Finallogo/zappos-logo-2025-header.svg"
+                        alt="Zappos Logo"
+                        className="h-10" // Adjusted for smaller screens
+                    />
+                </a>
+            </div>
             <div className="border border-gray-300 rounded-lg shadow-sm bg-white px-6 py-8 w-96">
                 <h1 className="text-2xl font-semibold mb-6 text-gray-800">Sign-In</h1>
                 {/* Email Field */}

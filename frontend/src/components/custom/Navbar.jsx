@@ -1,12 +1,21 @@
-import { PiBagThin, PiUserCircleThin } from "react-icons/pi";
-import { useSelector } from "react-redux";
+import { PiBagThin, PiSignOutThin, PiUserCircleThin } from "react-icons/pi";
+import { useDispatch, useSelector } from "react-redux";
+import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
+import { Link } from "react-router-dom";
+import { logout } from "@/redux/features/userSlice";
+import { clearCart } from "@/redux/features/cartSlice";
 
 
 const Navbar = () => {
   const userInfo = useSelector((state) => state.user.userInfo);
+  const dispatch = useDispatch()
   const items = useSelector((state) => state.cart.items);
-  console.log(items)
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+
+  const handleLogout = () => {
+    dispatch(logout())
+    dispatch(clearCart())
+  }
 
   return (
     <header className="bg-white border-b">
@@ -47,12 +56,46 @@ const Navbar = () => {
 
         <div className="flex items-center space-x-4 sm:space-x-6 font-bold text-lg">
           {/* User Icon */}
-          <div className="flex items-center">
-            <a href="/auth/register" className="text-gray-600 hover:text-black text-3xl">
-              <PiUserCircleThin />
-            </a>
-            <span className="text-sm">{isAuthenticated ? userInfo.name.split(" ")[0] : "Sign in!"}</span>
-          </div>
+          <Popover>
+            <PopoverTrigger>
+              <div className="flex items-center cursor-pointer">
+                <PiUserCircleThin className="text-gray-600 hover:text-black text-3xl" />
+                <span className="text-sm ml-2">{isAuthenticated ? userInfo.name.split(" ")[0] : "Sign in!"}</span>
+              </div>
+            </PopoverTrigger>
+            <PopoverContent width="100px" boxShadow="lg" borderRadius="md">
+
+              {isAuthenticated ? (
+                <>
+                  <Link to="/vip-signup" className="border border-transparent p-1 hover:border-blue-400 block text-sm hover:text-blue-600">
+                    Sign up for Zappos VIP
+                  </Link>
+                  <Link to="/account-overview" className="border border-transparent p-1 hover:border-blue-400 block text-sm hover:text-blue-600">
+                    Account Overview
+                  </Link>
+                  <Link to="/orders-returns" className="border border-transparent p-1 hover:border-blue-400 block text-sm hover:text-blue-600">
+                    View Orders/Return
+                  </Link>
+                  <button
+                    onClick={() => handleLogout()} // Replace with your sign-out logic
+                    className="w-full text-left text-sm hover:text-blue-600 flex items-center border border-transparent p-1 hover:border-blue-400"
+                  >
+                    Sign Out <PiSignOutThin className="ml-2" />
+                  </button>
+                </>
+              ) : (
+                <>
+                  <Link to="/auth/register" className="border border-transparent p-1 hover:border-blue-400 block text-sm hover:text-blue-600">
+                    Sign in / Register
+                  </Link>
+                  <Link to="/auth/login" className="border border-transparent p-1 hover:border-blue-400 block text-sm hover:text-blue-600">
+                    Log in
+                  </Link>
+                </>
+              )}
+            </PopoverContent>
+          </Popover>
+
 
           {/* Cart Icon with Badge */}
           <div className="relative">

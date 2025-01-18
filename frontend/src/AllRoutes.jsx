@@ -11,6 +11,7 @@ import VerifyEmail from "./pages/VerifyEmail";
 import SignIn from "./pages/SignIn";
 import ProductDetails from "./pages/ProductPage";
 import CheckoutPage from "./pages/CheckoutPage";
+import PrivateRoute from "./ProtectedRoutes";
 
 function AllRoutes() {
     const products = [
@@ -21,6 +22,7 @@ function AllRoutes() {
         { id: 5, name: "UGG", category: "Men's", price: 109.95, imgSrc: "https://m.media-amazon.com/images/I/71YaRXs33jL._AC_SR920,736_.jpg" },
         { id: 6, name: "The North Face Metropolis Parka", category: "Women's", price: 300.00, imgSrc: "https://m.media-amazon.com/images/I/71Y-TwkSmuL._AC_SR920,736_.jpg" },
     ];
+
     return (
         <Routes>
             <Route path="/" element={<LandingPage />} />
@@ -28,9 +30,9 @@ function AllRoutes() {
             <Route path="/auth/login" element={<SignIn />} />
             <Route path="/auth/register" element={<CreateAccount />} />
             <Route path="/checkout" element={<CheckoutPage cartArr={products} />} />
-            {/* Route for single product */}
-            <Route path="/products/:productId" element={<ProductDetails />} />
+
             {/* Protected routes */}
+            <Route path="/products/:productId" element={<PrivateRoute element={<ProductDetails />} />} />
             {/* <Route path="/home" element={<PrivateRoute element={<Home />} />} /> */}
             {/* <Route
         path="/onboard/create-profile"
