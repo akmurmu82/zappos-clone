@@ -2,8 +2,13 @@ import { useState } from "react";
 import axios from "axios";
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
 
 const VerifyEmail = () => {
+    const dispatch = useDispatch();
+    const userInfo = useSelector((state) => state.user.userInfo);
+    const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+
     const navigate = useNavigate()
     const [otp, setOtp] = useState("");
     const [otpSent, setOtpSent] = useState(false);
@@ -20,7 +25,7 @@ const VerifyEmail = () => {
         try {
             const response = await axios.post(
                 `${backendUrl}/api/otp/verify-otp`,
-                { email: "akmurmu6580@gmail.com", otp }
+                { email: userInfo.email, otp }
             );
 
             navigate("/")
@@ -43,7 +48,7 @@ const VerifyEmail = () => {
 
             // Make the API call to resend OTP
             const response = await axios.post(`${backendUrl}/api/otp/resend-otp`, {
-                email: 'akmurmu6580@gmail.com', // Replace `email` with the appropriate state or prop holding the user's email
+                email: userInfo.email, // Replace `email` with the appropriate state or prop holding the user's email
             });
 
             // Check the response and show success message
@@ -72,7 +77,7 @@ const VerifyEmail = () => {
                 </h1>
                 <p className="text-sm text-gray-700 mb-6 text-center">
                     To verify your email, we&apos;ve sent a One Time Password (OTP) to
-                    <span className="font-medium"> akmurmu6580@gmail.com </span>
+                    <span className="font-medium"> {userInfo.email} </span>
                     <a href="/auth/register" className="text-indigo-600 hover:underline">(Change)</a>
                 </p>
 

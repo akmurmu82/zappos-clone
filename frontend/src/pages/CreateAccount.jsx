@@ -1,8 +1,13 @@
+import { setUser } from "@/redux/features/userSlice";
+import axios from "axios";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
 import { useNavigate } from 'react-router-dom';
 
 const CreateAccount = () => {
+  const dispatch = useDispatch();
+
   const navigate = useNavigate();
   const [isLoading, setLoading] = useState(false)
   const [formData, setFormData] = useState({
@@ -39,25 +44,32 @@ const CreateAccount = () => {
     }
 
     try {
-      const response = await fetch(`${backendUrl}/api/users/register`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, password }),
+      // Make POST request with Axios
+      const response = await axios.post(`${backendUrl}/api/users/register`, {
+        name,
+        email,
+        password,
       });
 
-      const data = await response.json();
-
-      if (response.ok) {
+      if (response.status === 201) { // Status code for successful creation
         setSuccess("Account created successfully!");
-        setLoading(false)
+
+        // Dispatching the setUser action to update Redux state
+        dispatch(setUser({
+          name: response.data.name,
+          email: response.data.email,
+          // You can add other data fields as necessary
+        }));
+
+        // Redirect to the email verification page
         navigate('/verify-email');
       } else {
-        setError(data.message || "Something went wrong. Please try again.");
+        setError(response.data.message || "Something went wrong. Please try again.");
       }
     } catch (err) {
       setError("Server error. Please try again later.");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   };
 
@@ -152,8 +164,8 @@ const CreateAccount = () => {
               type="submit"
               disabled={isLoading}
               className={`w-full px-4 py-2 rounded-md text-sm font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 ${isLoading
-                  ? "bg-indigo-400 cursor-not-allowed"
-                  : "bg-indigo-600 text-white hover:bg-indigo-700 focus:ring-indigo-500"
+                ? "bg-indigo-400 cursor-not-allowed"
+                : "bg-indigo-600 text-white hover:bg-indigo-700 focus:ring-indigo-500"
                 }`}
             >
               {isLoading ? "Creating..." : "Create your account"}

@@ -9,7 +9,7 @@ const TrendingNow = () => {
     ];
 
     return (
-        <div className="my-8 px-6">
+        <div className="my-8 w-full">
             <h2 className="text-2xl font-bold mb-6">Trending Now</h2>
             <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
                 {trendingItems.map((item, index) => (
@@ -20,9 +20,10 @@ const TrendingNow = () => {
                         <img
                             src={item.img}
                             alt={item.label}
-                            className="w-full h-48 mb-5 object-cover rounded-md"
+                            height={10}
+                            className="w-full h-48 mb-5 object-cover"
                         />
-                        <a href="#" className="underline font-bold">{item.label}</a>
+                        <a href="#" className="hover:text-blue-800 underline font-bold">{item.label}</a>
                     </div>
                 ))}
             </div>
