@@ -65,7 +65,7 @@ A full-stack e-commerce web application inspired by Zappos, built with RESTful A
 
 ## 🌐 Live Demo
 
-[🔗 Visit Live Site](https://your-deployed-link.com)
+[🔗 Visit Live Site](https://zappos-clone-vert.vercel.app/)
 
 ---
 
